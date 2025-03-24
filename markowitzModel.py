@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import numpy as np
 import pandas as pd
 import yfinance as yf
@@ -19,8 +20,8 @@ start_date = '2015-01-01'  # Historical data start date
 end_date = '2025-01-01'    # Historical data end date
 
 # Create directories for storing data and figures
-os.makedirs('./data', exist_ok=True)
-os.makedirs('./figs', exist_ok=True)
+os.makedirs('./data/markowitzModel', exist_ok=True)
+os.makedirs('./figs/markowitzModel', exist_ok=True)
 
 def download_data():
     """
@@ -51,8 +52,8 @@ def show_data(data):
     plt.xlabel('Date')
     plt.ylabel('Price ($)')
     plt.tight_layout()
-    # Save figure to the figs directory
-    plt.savefig('./figs/stock_prices.png', dpi=300)
+    # Save figure to the figs/markowitzModel directory
+    plt.savefig('./figs/markowitzModel/stock_prices.png', dpi=300)
     plt.show()
 
 def calculate_return(data):
@@ -88,8 +89,8 @@ def show_statistics(returns):
     print(annual_covariance)
     
     # Save statistics to CSV files
-    annual_returns.to_csv('./data/annual_returns.csv')
-    annual_covariance.to_csv('./data/annual_covariance.csv')
+    annual_returns.to_csv('./data/markowitzModel/annual_returns.csv')
+    annual_covariance.to_csv('./data/markowitzModel/annual_covariance.csv')
     
 def show_mean_variance(returns, weights):
     """
@@ -112,7 +113,7 @@ def show_mean_variance(returns, weights):
     pd.DataFrame({
         'Metric': ['Return', 'Volatility', 'Sharpe Ratio'],
         'Value': [portfolio_return, portfolio_volatility, portfolio_return/portfolio_volatility]
-    }).to_csv('./data/specific_portfolio_metrics.csv', index=False)
+    }).to_csv('./data/markowitzModel/specific_portfolio_metrics.csv', index=False)
 
 def generate_portfolios(returns):
     """
@@ -149,7 +150,7 @@ def generate_portfolios(returns):
         'Return': portfolio_means,
         'Risk': portfolio_risks
     })
-    portfolio_data.to_csv('./data/generated_portfolios.csv', index=False)
+    portfolio_data.to_csv('./data/markowitzModel/generated_portfolios.csv', index=False)
         
     return np.array(portfolio_weights), np.array(portfolio_means), np.array(portfolio_risks)
 
@@ -176,7 +177,7 @@ def show_portfolios(returns, volatilities):
     plt.tight_layout()
     
     # Save figure
-    plt.savefig('./figs/efficient_frontier.png', dpi=300)
+    plt.savefig('./figs/markowitzModel/efficient_frontier.png', dpi=300)
     plt.show()
 
 def statistics(weights, returns):
@@ -269,13 +270,13 @@ def print_optimal_portfolio(optimum, returns):
         'Stock': stocks,
         'Weight': opt_weights
     })
-    optimal_data.to_csv('./data/optimal_portfolio.csv', index=False)
+    optimal_data.to_csv('./data/markowitzModel/optimal_portfolio.csv', index=False)
     
     # Save optimal portfolio statistics
     pd.DataFrame({
         'Metric': ['Return', 'Volatility', 'Sharpe Ratio'],
         'Value': stats
-    }).to_csv('./data/optimal_portfolio_metrics.csv', index=False)
+    }).to_csv('./data/markowitzModel/optimal_portfolio_metrics.csv', index=False)
 
 def show_optimal_portfolio(opt, rets, portfolio_rets, portfolio_vols):
     """
@@ -309,21 +310,21 @@ def show_optimal_portfolio(opt, rets, portfolio_rets, portfolio_vols):
     plt.tight_layout()
     
     # Save figure
-    plt.savefig('./figs/optimal_portfolio.png', dpi=300)
+    plt.savefig('./figs/markowitzModel/optimal_portfolio.png', dpi=300)
     plt.show()
 
 
 if __name__ == '__main__':
     # Download and save historical stock data
     dataset = download_data()
-    dataset.to_csv('./data/stock_price_data.csv')
+    dataset.to_csv('./data/markowitzModel/stock_price_data.csv')
     
     # Visualize stock price data
     show_data(dataset)
     
     # Calculate daily returns
     log_daily_returns = calculate_return(dataset) 
-    log_daily_returns.to_csv('./data/daily_returns.csv')
+    log_daily_returns.to_csv('./data/markowitzModel/daily_returns.csv')
     
     # Display and save statistics
     show_statistics(log_daily_returns)
