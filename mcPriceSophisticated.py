@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 """
 Monte Carlo Stock Price Simulation with Spread Visualization
 ----------------------------------------------------------
@@ -22,7 +22,7 @@ from matplotlib.ticker import FuncFormatter
 plt.style.use("bmh")
 
 # Constants
-NUM_OF_SIMULATIONS = 1000  # Number of Monte Carlo simulations to run
+NUM_OF_SIMULATIONS = 10000  # Number of Monte Carlo simulations to run
 DEFAULT_DAYS = 252         # Default simulation period (1 trading year)
 PLOT_DPI = 300             # High resolution for saved figures
 SPREAD_ALPHA = 0.2         # Transparency for spread visualization
