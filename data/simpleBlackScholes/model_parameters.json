@@ -1,0 +1,8 @@
+{
+    "stock_price": 100,
+    "strike_price": 100,
+    "time_to_expiry": 1,
+    "risk_free_rate": 0.05,
+    "volatility": 0.2,
+    "timestamp": "2025-03-27 13:35:48"
+}
