@@ -29,8 +29,8 @@ def stock_monte_carlo(S0, mu, sigma, N=252):
     plt.xlabel('Time [days]')
     plt.ylabel('Stock Price [$]')
     plt.grid(True)
-    plt.show()
     plt.savefig("./figs/MCStocks/mc_gbm_bodoh.png", dpi=300)
+    plt.show()
     print("Prediction for future stock price: $ %.2f" %simulation_data['mean'].tail(1))
 if __name__ == "__main__":
     stock_monte_carlo(50, 0.0002, 0.01)
